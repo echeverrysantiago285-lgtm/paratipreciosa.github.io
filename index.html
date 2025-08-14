@@ -26,88 +26,67 @@
             font-size: 1.5em;
             margin-top: 20px;
         }
-        button {
-            background-color: #ff4da6;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            margin-top: 20px;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #ff1a8c;
-        }
     </style>
 </head>
 <body>
 
 <div id="container">
-    <img id="imagen" src="" alt="Imagen">
+    <img id="imagen" src="" alt="" style="display:none;">
     <div id="texto" class="texto"></div>
-    <button id="boton" style="display:none;">Mostrar Cualidades</button>
 </div>
 
 <script>
-    // Párrafos iniciales
+    // Párrafos iniciales (8 segundos cada uno)
     const parrafos = [
-        "Desde que te conocí, mi vida ha cambiado para mejor...",
-        "Cada día me enseñas que el cariño verdadero se demuestra con detalles...",
+        "Desde que te conocí, mi vida cambió para mejor...",
+        "Cada día me enseñas que el cariño verdadero está en los detalles...",
         "Eres única, y me encanta recordártelo siempre...",
-        "Gracias por existir y por permitir que forme parte de tu mundo..."
+        "Gracias por existir y por dejarme estar en tu vida..."
     ];
 
-    // Cualidades
+    // Cualidades con imágenes (6 segundos cada una)
     const cualidades = [
-        "Tu sonrisa ilumina cualquier lugar.",
-        "Tu forma de ser es incomparable.",
-        "Eres muy inteligente y capaz.",
-        "Siempre tienes palabras que reconfortan.",
-        "Tu bondad es inmensa.",
-        "Tienes una belleza que enamora.",
-        "Eres muy divertida.",
-        "Tu determinación inspira.",
-        "Sabes amar de verdad.",
-        "Eres simplemente única."
+        {texto: "Eres mi inspiración diaria 💫", imagen: "img1.jpg"},
+        {texto: "Tienes la sonrisa más hermosa 😍", imagen: "img2.jpg"},
+        {texto: "Tu risa alegra mi alma 🎶", imagen: "img3.jpg"},
+        {texto: "Me encanta tu forma de ver la vida 🌈", imagen: "img4.jpg"},
+        {texto: "Eres mi paz y mi refugio 🕊️", imagen: "img5.jpg"},
+        {texto: "Cada momento contigo es un regalo 🎁", imagen: "img6.jpg"},
+        {texto: "Tienes un corazón gigante ❤️", imagen: "img7.jpg"},
+        {texto: "Eres la razón de mis sonrisas 😊", imagen: "img8.jpg"},
+        {texto: "Haces que todo sea más bonito ✨", imagen: "img9.jpg"},
+        {texto: "Te admiro más cada día, mi Reina 🌟", imagen: "img10.jpg"}
     ];
 
-    // Imagen final y frase
-    const imagenFinal = "imagen10.jpg"; // Cambia por tu ruta real
+    const imagenFinal = "imagenFinal.jpg"; // Cambia por tu imagen final
     const fraseFinal = "Eres la persona que le da color a mis días.";
 
     let index = 0;
-    let fase = "parrafos"; // Control de fases
+    let fase = "parrafos";
 
     const imagen = document.getElementById("imagen");
     const texto = document.getElementById("texto");
-    const boton = document.getElementById("boton");
 
     function mostrarParrafos() {
         if (index < parrafos.length) {
             texto.textContent = parrafos[index];
             imagen.style.display = "none";
             index++;
-            setTimeout(mostrarParrafos, 8000);
+            setTimeout(mostrarParrafos, 8000); // 8 segundos
         } else {
             fase = "cualidades";
             index = 0;
-            boton.style.display = "inline-block";
+            mostrarCualidades();
         }
     }
 
-    boton.addEventListener("click", function() {
-        boton.style.display = "none";
-        mostrarCualidades();
-    });
-
     function mostrarCualidades() {
         if (index < cualidades.length) {
-            texto.textContent = cualidades[index];
-            imagen.src = `imagen${index+1}.jpg`; // Debes tener imagen1.jpg ... imagen10.jpg
+            texto.textContent = cualidades[index].texto;
+            imagen.src = cualidades[index].imagen;
             imagen.style.display = "block";
             index++;
-            setTimeout(mostrarCualidades, 4000);
+            setTimeout(mostrarCualidades, 6000); // 6 segundos
         } else {
             mostrarFinal();
         }
@@ -116,9 +95,10 @@
     function mostrarFinal() {
         imagen.src = imagenFinal;
         texto.textContent = fraseFinal;
+        imagen.style.display = "block";
     }
 
-    // Iniciar presentación
+    // Inicia la presentación
     mostrarParrafos();
 </script>
 
