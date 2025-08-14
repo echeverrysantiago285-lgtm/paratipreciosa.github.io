@@ -1,107 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Ti ❤️</title>
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: black;
-        color: white;
-        text-align: center;
-        overflow: hidden;
-    }
-
-    .pantalla {
-        position: relative;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .portada {
-        background-size: cover;
-        background-position: center;
-    }
-
-    .texto {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 1.8em;
-        max-width: 90%;
-        text-shadow: 2px 2px 5px black;
-    }
-
-    .imagen {
-        width: 100%;
-        height: 100vh;
-        object-fit: cover;
-    }
-
-    button {
-        position: absolute;
-        bottom: 30px;
-        padding: 10px 20px;
-        font-size: 1.2em;
-        background-color: rgba(255, 0, 76, 0.8);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti ❤️</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="contenedor" class="pantalla portada" style="background-image: url('imagen_portada.jpg');">
-    <div id="texto" class="texto">Eres lo mejor que me ha pasado 💖</div>
-    <button onclick="iniciarCualidades()">Ver cualidades</button>
-</div>
+    <div class="contenedor">
+        <div class="portada">
+            <img src="imagenes/imagen_portada.jpg" alt="Imagen portada" class="imagen">
+            <div class="texto-principal">
+                <p>Sé que nuestro tiempo juntos ha sido relativamente corto, pero para mí este mes conociéndote ha sido de lo más bonito que me ha pasado en años.</p>
+                <p>Eres esa persona especial que me inspira a crecer y a convertirme en alguien capaz de brindarte una vida hermosa, llena de momentos y aventuras inolvidables.</p>
+                <p>Eres el faro que guía mi corazón y la luz que ilumina mis días. Eres esa media naranja que durante tanto tiempo soñé encontrar, para vivir el amor más puro y real que pueda existir.</p>
+                <p>Sé que en el camino habrá dificultades, pero mi deseo es hacerte feliz siempre. Tu sonrisa es un tesoro del que jamás me cansaré, y mi mayor anhelo es desarrollar mi vida a tu lado.</p>
+                <p>Quiero que nuestro futuro esté entrelazado, y que cada día podamos construir juntos una historia llena de felicidad, amor y complicidad.</p>
+            </div>
+        </div>
+        <button id="mostrarCualidades">Ver cualidades</button>
+        <div id="cualidad"></div>
+    </div>
 
-<script>
-    const cualidades = [
-        {texto: "Eres mi inspiración diaria 💫", imagen: "img1.jpg"},
-        {texto: "Tienes la sonrisa más hermosa 😍", imagen: "img2.jpg"},
-        {texto: "Tu risa alegra mi alma 🎶", imagen: "img3.jpg"},
-        {texto: "Me encanta tu forma de ver la vida 🌈", imagen: "img4.jpg"},
-        {texto: "Eres mi paz y mi refugio 🕊️", imagen: "img5.jpg"},
-        {texto: "Cada momento contigo es un regalo 🎁", imagen: "img6.jpg"},
-        {texto: "Tienes un corazón gigante ❤️", imagen: "img7.jpg"},
-        {texto: "Eres la razón de mis sonrisas 😊", imagen: "img8.jpg"},
-        {texto: "Haces que todo sea más bonito ✨", imagen: "img9.jpg"},
-        {texto: "Te admiro más cada día, mi Reina 🌟", imagen: "img10.jpg"},
-        {texto: "Siempre serás mi persona favorita 💍❤️", imagen: "img_final.jpg"}
-    ];
-
-    let index = 0;
-
-    function iniciarCualidades() {
-        const contenedor = document.getElementById("contenedor");
-        const texto = document.getElementById("texto");
-        const boton = document.querySelector("button");
-
-        boton.style.display = "none"; 
-
-        function mostrarSiguiente() {
-            if (index < cualidades.length) {
-                contenedor.style.backgroundImage = `url('${cualidades[index].imagen}')`;
-                texto.textContent = cualidades[index].texto;
-                index++;
-                if (index < cualidades.length) {
-                    setTimeout(mostrarSiguiente, 4000);
-                }
-            }
-        }
-
-        mostrarSiguiente();
-    }
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
