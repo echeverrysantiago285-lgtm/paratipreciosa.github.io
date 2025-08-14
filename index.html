@@ -58,7 +58,7 @@
         {texto: "Te admiro más cada día, mi Reina 🌟", imagen: "img10.jpg"}
     ];
 
-    const imagenFinal = "imagenFinal.jpg"; // Cambia por tu imagen final
+    const imagenFinal = "imgf.jpg"; // Cambia por tu imagen final
     const fraseFinal = "Eres la persona que le da color a mis días.";
 
     let index = 0;
@@ -72,7 +72,7 @@
             texto.textContent = parrafos[index];
             imagen.style.display = "none";
             index++;
-            setTimeout(mostrarParrafos, 5000); // 8 segundos
+            setTimeout(mostrarParrafos, 4000); // 8 segundos
         } else {
             fase = "cualidades";
             index = 0;
@@ -86,7 +86,7 @@
             imagen.src = cualidades[index].imagen;
             imagen.style.display = "block";
             index++;
-            setTimeout(mostrarCualidades, 5000); // 6 segundos
+            setTimeout(mostrarCualidades, 4000); // 6 segundos
         } else {
             mostrarFinal();
         }
@@ -104,5 +104,6 @@
 
 </body>
 </html>
+
 
 
