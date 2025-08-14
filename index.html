@@ -16,11 +16,32 @@
             max-width: 800px;
             margin: auto;
             padding: 20px;
+            position: relative;
         }
-        img {
+        .imagen-con-texto {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .imagen-con-texto img {
             width: 100%;
             height: auto;
             border-radius: 10px;
+        }
+        .texto-superpuesto {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4em;
+            font-weight: bold;
+            color: red;
+            text-shadow: 2px 2px 5px black;
+            animation: parpadeo 1.5s infinite alternate;
+        }
+        @keyframes parpadeo {
+            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
         }
         .texto {
             font-size: 1.5em;
@@ -31,12 +52,14 @@
 <body>
 
 <div id="container">
-    <img id="imagen" src="" alt="" style="display:none;">
+    <div class="imagen-con-texto" id="contenedor-imagen" style="display:none;">
+        <img id="imagen" src="" alt="">
+        <div class="texto-superpuesto" id="texto-superpuesto" style="display:none;">TE AMO</div>
+    </div>
     <div id="texto" class="texto"></div>
 </div>
 
 <script>
-    // Párrafos iniciales (6 segundos cada uno)
     const parrafos = [
         "Desde que te conocí, mi vida cambió para mejor...",
         "Cada día me enseñas que el cariño verdadero está en los detalles...",
@@ -44,7 +67,6 @@
         "Gracias por existir y por dejarme estar en tu vida..."
     ];
 
-    // Cualidades con imágenes (6 segundos cada una)
     const cualidades = [
         {texto: "Eres mi inspiración diaria 💫", imagen: "img1.jpg"},
         {texto: "Tienes la sonrisa más hermosa 😍", imagen: "img2.jpg"},
@@ -58,7 +80,7 @@
         {texto: "Te admiro más cada día, mi Reina 🌟", imagen: "img10.jpg"}
     ];
 
-    const imagenFinal = "imagenFinal.jpg"; // Tu imagen final
+    const imagenFinal = "imagenFinal.jpg";
     const fraseFinal = "Eres la persona que le da color a mis días.";
 
     let index = 0;
@@ -66,13 +88,15 @@
 
     const imagen = document.getElementById("imagen");
     const texto = document.getElementById("texto");
+    const contenedorImagen = document.getElementById("contenedor-imagen");
+    const textoSuperpuesto = document.getElementById("texto-superpuesto");
 
     function mostrarParrafos() {
         if (index < parrafos.length) {
             texto.textContent = parrafos[index];
-            imagen.style.display = "none";
+            contenedorImagen.style.display = "none";
             index++;
-            setTimeout(mostrarParrafos, 6000); // 6 segundos
+            setTimeout(mostrarParrafos, 6000);
         } else {
             fase = "cualidades";
             index = 0;
@@ -84,9 +108,10 @@
         if (index < cualidades.length) {
             texto.textContent = cualidades[index].texto;
             imagen.src = cualidades[index].imagen;
-            imagen.style.display = "block";
+            contenedorImagen.style.display = "block";
+            textoSuperpuesto.style.display = "none";
             index++;
-            setTimeout(mostrarCualidades, 6000); // 6 segundos
+            setTimeout(mostrarCualidades, 6000);
         } else {
             mostrarFinal();
         }
@@ -95,14 +120,13 @@
     function mostrarFinal() {
         imagen.src = imagenFinal;
         texto.textContent = fraseFinal;
-        imagen.style.display = "block";
+        contenedorImagen.style.display = "block";
+        textoSuperpuesto.style.display = "block"; // Muestra el "TE AMO"
     }
 
-    // Inicia la presentación
     mostrarParrafos();
 </script>
 
 </body>
 </html>
-
 
