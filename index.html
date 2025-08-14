@@ -8,39 +8,50 @@
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background-color: #000;
+        background-color: black;
         color: white;
         text-align: center;
-        overflow-x: hidden;
+        overflow: hidden;
     }
-    .contenedor {
+
+    .pantalla {
         position: relative;
-        max-width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
-    .contenedor img {
-        width: 100%;
-        height: auto;
-        display: block;
+
+    .portada {
+        background-size: cover;
+        background-position: center;
     }
-    .texto-sobre {
+
+    .texto {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: rgba(0, 0, 0, 0.6);
-        padding: 15px;
-        border-radius: 10px;
-        font-size: 1rem;
+        font-size: 1.8em;
         max-width: 90%;
-        line-height: 1.5;
+        text-shadow: 2px 2px 5px black;
     }
-    #boton {
-        margin-top: 15px;
+
+    .imagen {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+    }
+
+    button {
+        position: absolute;
+        bottom: 30px;
         padding: 10px 20px;
-        font-size: 1.2rem;
-        background-color: #ff4081;
-        border: none;
+        font-size: 1.2em;
+        background-color: rgba(255, 0, 76, 0.8);
         color: white;
+        border: none;
         border-radius: 10px;
         cursor: pointer;
     }
@@ -48,18 +59,10 @@
 </head>
 <body>
 
-<div class="contenedor">
-    <img id="imagen" src="imagen_portada.jpg" alt="Imagen">
-    <div id="texto" class="texto-sobre">
-        Sé que nuestro tiempo juntos ha sido relativamente corto, pero para mí este mes conociéndote ha sido de lo más bonito que me ha pasado en años.<br><br>
-        Eres esa persona especial que me inspira a crecer y a convertirme en alguien capaz de brindarte una vida hermosa, llena de momentos y aventuras inolvidables.<br><br>
-        Eres el faro que guía mi corazón y la luz que ilumina mis días. Eres esa media naranja que durante tanto tiempo soñé encontrar, para vivir el amor más puro y real que pueda existir.<br><br>
-        Sé que en el camino habrá dificultades, pero mi deseo es hacerte feliz siempre. Tu sonrisa es un tesoro del que jamás me cansaré, y mi mayor anhelo es desarrollar mi vida a tu lado.<br><br>
-        Quiero que nuestro futuro esté entrelazado, y que cada día podamos construir juntos una historia llena de felicidad, amor y complicidad.
-    </div>
+<div id="contenedor" class="pantalla portada" style="background-image: url('imagen_portada.jpg');">
+    <div id="texto" class="texto">Eres lo mejor que me ha pasado 💖</div>
+    <button onclick="iniciarCualidades()">Ver cualidades</button>
 </div>
-
-<button id="boton">Ver cualidades ❤️</button>
 
 <script>
     const cualidades = [
@@ -73,37 +76,32 @@
         {texto: "Eres la razón de mis sonrisas 😊", imagen: "img8.jpg"},
         {texto: "Haces que todo sea más bonito ✨", imagen: "img9.jpg"},
         {texto: "Te admiro más cada día, mi Reina 🌟", imagen: "img10.jpg"},
+        {texto: "Siempre serás mi persona favorita 💍❤️", imagen: "img_final.jpg"}
     ];
 
-    const fraseFinal = {
-        texto: "Eres la razón por la que creo que la vida es mágica, y siempre quiero ser tu lugar seguro ❤️",
-        imagen: "img_final.jpg"
-    };
+    let index = 0;
 
-    document.getElementById("boton").addEventListener("click", () => {
-        let index = 0;
-        const img = document.getElementById("imagen");
-        const txt = document.getElementById("texto");
-        const boton = document.getElementById("boton");
+    function iniciarCualidades() {
+        const contenedor = document.getElementById("contenedor");
+        const texto = document.getElementById("texto");
+        const boton = document.querySelector("button");
 
-        boton.style.display = "none";
+        boton.style.display = "none"; 
 
-        const mostrarCualidad = () => {
+        function mostrarSiguiente() {
             if (index < cualidades.length) {
-                img.src = cualidades[index].imagen;
-                txt.innerHTML = cualidades[index].texto;
+                contenedor.style.backgroundImage = `url('${cualidades[index].imagen}')`;
+                texto.textContent = cualidades[index].texto;
                 index++;
-                setTimeout(mostrarCualidad, 4000);
-            } else {
-                img.src = fraseFinal.imagen;
-                txt.innerHTML = fraseFinal.texto;
+                if (index < cualidades.length) {
+                    setTimeout(mostrarSiguiente, 4000);
+                }
             }
-        };
+        }
 
-        mostrarCualidad();
-    });
+        mostrarSiguiente();
+    }
 </script>
 
 </body>
 </html>
-
