@@ -72,7 +72,7 @@
             texto.textContent = parrafos[index];
             imagen.style.display = "none";
             index++;
-            setTimeout(mostrarParrafos, 8000); // 8 segundos
+            setTimeout(mostrarParrafos, 5000); // 8 segundos
         } else {
             fase = "cualidades";
             index = 0;
@@ -86,7 +86,7 @@
             imagen.src = cualidades[index].imagen;
             imagen.style.display = "block";
             index++;
-            setTimeout(mostrarCualidades, 6000); // 6 segundos
+            setTimeout(mostrarCualidades, 5000); // 6 segundos
         } else {
             mostrarFinal();
         }
@@ -104,4 +104,5 @@
 
 </body>
 </html>
+
 
