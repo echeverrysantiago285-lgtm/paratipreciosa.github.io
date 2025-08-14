@@ -10,31 +10,39 @@
         background-color: #ffe6f0;
         margin: 0;
         padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        text-align: center;
     }
 
     .container {
         max-width: 600px;
-        padding: 20px;
-        background-color: white;
-        border-radius: 15px;
-        box-shadow: 0px 4px 20px rgba(0,0,0,0.2);
+        margin: auto;
+        padding: 0;
     }
 
-    .portada {
+    /* Pantalla de portada */
+    .portada-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .portada-container img {
         width: 100%;
         border-radius: 10px;
+        display: block;
     }
 
     .texto-principal {
-        font-size: 18px;
-        margin-top: 15px;
-        color: #333;
-        line-height: 1.5;
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 16px;
+        line-height: 1.4;
+        max-width: 90%;
+        text-align: center;
     }
 
     button {
@@ -51,13 +59,16 @@
         background-color: #e60073;
     }
 
+    /* Cualidades */
     .cualidad {
+        display: none;
         position: relative;
     }
 
     .cualidad img {
         width: 100%;
         border-radius: 10px;
+        display: block;
     }
 
     .cualidad p {
@@ -70,24 +81,26 @@
         padding: 10px;
         border-radius: 5px;
         max-width: 90%;
+        text-align: center;
     }
 </style>
 </head>
 <body>
 
 <div class="container">
-    <img src="imagen_portada.jpg" alt="Portada" class="portada">
-    <p class="texto-principal">
-        Sé que nuestro tiempo juntos ha sido relativamente corto, pero para mí este mes conociéndote ha sido de lo más bonito que me ha pasado en años.  
-        Eres esa persona especial que me inspira a crecer y a convertirme en alguien capaz de brindarte una vida hermosa, llena de momentos y aventuras inolvidables.  
-        Eres el faro que guía mi corazón y la luz que ilumina mis días. Eres esa media naranja que durante tanto tiempo soñé encontrar, para vivir el amor más puro y real que pueda existir.  
-        Sé que en el camino habrá dificultades, pero mi deseo es hacerte feliz siempre.  
-        Tu sonrisa es un tesoro del que jamás me cansaré, y mi mayor anhelo es desarrollar mi vida a tu lado.  
-        Quiero que nuestro futuro esté entrelazado, y que cada día podamos construir juntos una historia llena de felicidad, amor y complicidad.
-    </p>
-    <button onclick="mostrarCualidades()">Ver tus cualidades 💖</button>
+    <div class="portada-container" id="pantalla-inicial">
+        <img src="imagen_portada.jpg" alt="Portada">
+        <p class="texto-principal">
+            Sé que nuestro tiempo juntos ha sido relativamente corto, pero para mí este mes conociéndote ha sido de lo más bonito que me ha pasado en años.  
+            Eres esa persona especial que me inspira a crecer y a convertirme en alguien capaz de brindarte una vida hermosa, llena de momentos y aventuras inolvidables.  
+            Tu sonrisa es un tesoro del que jamás me cansaré, y mi mayor anhelo es desarrollar mi vida a tu lado.
+        </p>
+        <div style="text-align:center;">
+            <button onclick="mostrarCualidades()">Ver tus cualidades 💖</button>
+        </div>
+    </div>
 
-    <div class="cualidad" style="display:none;">
+    <div class="cualidad" id="cualidad">
         <img id="cualidad-img" src="" alt="Cualidad">
         <p id="cualidad-texto"></p>
     </div>
@@ -110,8 +123,8 @@
     let index = 0;
 
     function mostrarCualidades() {
-        document.querySelector('.texto-principal').style.display = 'none';
-        const cualidadDiv = document.querySelector('.cualidad');
+        document.getElementById('pantalla-inicial').style.display = 'none';
+        const cualidadDiv = document.getElementById('cualidad');
         cualidadDiv.style.display = 'block';
 
         function cambiarCualidad() {
