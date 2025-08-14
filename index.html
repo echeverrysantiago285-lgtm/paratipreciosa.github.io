@@ -3,108 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para ti 💖</title>
+<title>Para Ti ❤️</title>
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background-color: #ffe6f0;
         margin: 0;
-        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        color: white;
+        text-align: center;
+        overflow-x: hidden;
     }
-
-    .container {
-        max-width: 600px;
-        margin: auto;
-        padding: 0;
-    }
-
-    /* Pantalla de portada */
-    .portada-container {
+    .contenedor {
         position: relative;
-        width: 100%;
+        max-width: 100%;
     }
-
-    .portada-container img {
+    .contenedor img {
         width: 100%;
-        border-radius: 10px;
+        height: auto;
         display: block;
     }
-
-    .texto-principal {
+    .texto-sobre {
         position: absolute;
-        bottom: 15px;
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.6);
         padding: 15px;
         border-radius: 10px;
-        font-size: 16px;
-        line-height: 1.4;
+        font-size: 1rem;
         max-width: 90%;
-        text-align: center;
+        line-height: 1.5;
     }
-
-    button {
+    #boton {
         margin-top: 15px;
-        padding: 10px 15px;
-        background-color: #ff4da6;
-        color: white;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        background-color: #ff4081;
         border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background-color: #e60073;
-    }
-
-    /* Cualidades */
-    .cualidad {
-        display: none;
-        position: relative;
-    }
-
-    .cualidad img {
-        width: 100%;
-        border-radius: 10px;
-        display: block;
-    }
-
-    .cualidad p {
-        position: absolute;
-        bottom: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.6);
         color: white;
-        padding: 10px;
-        border-radius: 5px;
-        max-width: 90%;
-        text-align: center;
+        border-radius: 10px;
+        cursor: pointer;
     }
 </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="portada-container" id="pantalla-inicial">
-        <img src="imagen_portada.jpg" alt="Portada">
-        <p class="texto-principal">
-            Sé que nuestro tiempo juntos ha sido relativamente corto, pero para mí este mes conociéndote ha sido de lo más bonito que me ha pasado en años.  
-            Eres esa persona especial que me inspira a crecer y a convertirme en alguien capaz de brindarte una vida hermosa, llena de momentos y aventuras inolvidables.  
-            Tu sonrisa es un tesoro del que jamás me cansaré, y mi mayor anhelo es desarrollar mi vida a tu lado.
-        </p>
-        <div style="text-align:center;">
-            <button onclick="mostrarCualidades()">Ver tus cualidades 💖</button>
-        </div>
-    </div>
-
-    <div class="cualidad" id="cualidad">
-        <img id="cualidad-img" src="" alt="Cualidad">
-        <p id="cualidad-texto"></p>
+<div class="contenedor">
+    <img id="imagen" src="imagen_portada.jpg" alt="Imagen">
+    <div id="texto" class="texto-sobre">
+        Sé que nuestro tiempo juntos ha sido relativamente corto, pero para mí este mes conociéndote ha sido de lo más bonito que me ha pasado en años.<br><br>
+        Eres esa persona especial que me inspira a crecer y a convertirme en alguien capaz de brindarte una vida hermosa, llena de momentos y aventuras inolvidables.<br><br>
+        Eres el faro que guía mi corazón y la luz que ilumina mis días. Eres esa media naranja que durante tanto tiempo soñé encontrar, para vivir el amor más puro y real que pueda existir.<br><br>
+        Sé que en el camino habrá dificultades, pero mi deseo es hacerte feliz siempre. Tu sonrisa es un tesoro del que jamás me cansaré, y mi mayor anhelo es desarrollar mi vida a tu lado.<br><br>
+        Quiero que nuestro futuro esté entrelazado, y que cada día podamos construir juntos una historia llena de felicidad, amor y complicidad.
     </div>
 </div>
+
+<button id="boton">Ver cualidades ❤️</button>
 
 <script>
     const cualidades = [
@@ -117,25 +72,36 @@
         {texto: "Tienes un corazón gigante ❤️", imagen: "img7.jpg"},
         {texto: "Eres la razón de mis sonrisas 😊", imagen: "img8.jpg"},
         {texto: "Haces que todo sea más bonito ✨", imagen: "img9.jpg"},
-        {texto: "Te admiro más cada día, mi Reina 🌟", imagen: "img10.jpg"}
+        {texto: "Te admiro más cada día, mi Reina 🌟", imagen: "img10.jpg"},
     ];
 
-    let index = 0;
+    const fraseFinal = {
+        texto: "Eres la razón por la que creo que la vida es mágica, y siempre quiero ser tu lugar seguro ❤️",
+        imagen: "img_final.jpg"
+    };
 
-    function mostrarCualidades() {
-        document.getElementById('pantalla-inicial').style.display = 'none';
-        const cualidadDiv = document.getElementById('cualidad');
-        cualidadDiv.style.display = 'block';
+    document.getElementById("boton").addEventListener("click", () => {
+        let index = 0;
+        const img = document.getElementById("imagen");
+        const txt = document.getElementById("texto");
+        const boton = document.getElementById("boton");
 
-        function cambiarCualidad() {
-            document.getElementById('cualidad-img').src = cualidades[index].imagen;
-            document.getElementById('cualidad-texto').textContent = cualidades[index].texto;
-            index = (index + 1) % cualidades.length;
-        }
+        boton.style.display = "none";
 
-        cambiarCualidad();
-        setInterval(cambiarCualidad, 4000);
-    }
+        const mostrarCualidad = () => {
+            if (index < cualidades.length) {
+                img.src = cualidades[index].imagen;
+                txt.innerHTML = cualidades[index].texto;
+                index++;
+                setTimeout(mostrarCualidad, 4000);
+            } else {
+                img.src = fraseFinal.imagen;
+                txt.innerHTML = fraseFinal.texto;
+            }
+        };
+
+        mostrarCualidad();
+    });
 </script>
 
 </body>
