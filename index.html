@@ -3,26 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para ti ❤️</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Para Ti, Mi Preciosa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff5f7;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contenedor {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .portada {
+            margin-bottom: 20px;
+        }
+
+        .imagen {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .texto-principal {
+            background-color: rgba(255, 192, 203, 0.7);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        #mostrarCualidades {
+            padding: 10px 20px;
+            background-color: #ff6f91;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #mostrarCualidades:hover {
+            background-color: #ff4e78;
+        }
+
+        #cualidad img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        #cualidad p {
+            background-color: rgba(255, 182, 193, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
 
     <div class="contenedor">
+        <!-- Texto principal con imagen repetida -->
         <div class="portada">
-            <img src="imagenes/imagen_portada.jpg" alt="Imagen portada" class="imagen">
+            <img src="imagen_portada.jpg" class="imagen" alt="Portada">
             <div class="texto-principal">
-                <p>Sé que nuestro tiempo juntos ha sido relativamente corto, pero para mí este mes conociéndote ha sido de lo más bonito que me ha pasado en años.</p>
-                <p>Eres esa persona especial que me inspira a crecer y a convertirme en alguien capaz de brindarte una vida hermosa, llena de momentos y aventuras inolvidables.</p>
-                <p>Eres el faro que guía mi corazón y la luz que ilumina mis días. Eres esa media naranja que durante tanto tiempo soñé encontrar, para vivir el amor más puro y real que pueda existir.</p>
-                <p>Sé que en el camino habrá dificultades, pero mi deseo es hacerte feliz siempre. Tu sonrisa es un tesoro del que jamás me cansaré, y mi mayor anhelo es desarrollar mi vida a tu lado.</p>
-                <p>Quiero que nuestro futuro esté entrelazado, y que cada día podamos construir juntos una historia llena de felicidad, amor y complicidad.</p>
+                <p>Mi amor, desde que llegaste a mi vida, cada día es más especial.</p>
             </div>
         </div>
-        <button id="mostrarCualidades">Ver cualidades</button>
-        <div id="cualidad"></div>
+
+        <div class="portada">
+            <img src="imagen_portada.jpg"  class="imagen" alt="Portada">
+            <div class="texto-principal">
+                <p>Tu sonrisa ilumina mis días y tu amor llena mi corazón.</p>
+            </div>
+        </div>
+
+        <div class="portada">
+            <img src="imagen_portada.jpg"  class="imagen" alt="Portada">
+            <div class="texto-principal">
+                <p>No hay palabras suficientes para describir lo feliz que me haces.</p>
+            </div>
+        </div>
+
+        <div class="portada">
+            <img src="imagen_portada.jpg"  class="imagen" alt="Portada">
+            <div class="texto-principal">
+                <p>Hoy quiero recordarte lo increíble que eres y cuánto te amo.</p>
+            </div>
+        </div>
+
+        <!-- Botón -->
+        <button id="mostrarCualidades">Mostrar cualidades</button>
+
+        <!-- Contenedor de cualidades -->
+        <div class="portada" id="cualidad"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        const cualidades = [
+            { img: "imagenes/img1.jpg", texto: "Eres mi inspiración diaria 💫" },
+            { img: "imagenes/img2.jpg", texto: "Eres mi inspiración diaria 💫" },
+            { img: "imagenes/img3.jpg", texto: "Tienes la sonrisa más hermosa 😍" },
+            { img: "imagenes/img4.jpg", texto: "Tu risa alegra mi alma 🎶" },
+            { img: "imagenes/img5.jpg", texto: "Me encanta tu forma de ver la vida 🌈" },
+            { img: "imagenes/img6.jpg", texto: "Eres mi paz y mi refugio 🕊️"},
+            { img: "imagenes/img7.jpg", texto: "Cada momento contigo es un regalo 🎁" },
+            { img: "imagenes/img8.jpg", texto: "Tienes un corazón gigante ❤️" },
+            { img: "imagenes/img9.jpg", texto: "Eres la razón de mis sonrisas 😊" },
+            { img: "imagenes/img10.jpg", texto: "Eres, y siempre serás, mi gran amor ❤️" }
+        ];
+
+        let indice = 0;
+        document.getElementById("mostrarCualidades").addEventListener("click", function () {
+            if (indice < cualidades.length) {
+                document.getElementById("cualidad").innerHTML = `
+                    <img src="${cualidades[indice].img}" alt="Imagen">
+                    <p>${cualidades[indice].texto}</p>
+                `;
+                indice++;
+            } else {
+                alert("Ya viste todas mis cualidades para ti ❤️");
+            }
+        });
+    </script>
+
 </body>
 </html>
