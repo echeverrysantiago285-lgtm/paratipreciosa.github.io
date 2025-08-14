@@ -3,48 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensaje Especial</title>
+    <title>Para Ti ❤️</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
             background-color: black;
             color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        #contenedor {
             text-align: center;
         }
-        #container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
         img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: none;
         }
-        .texto {
+        p {
             font-size: 1.5em;
-            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        p.mostrar {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
 
-<div id="container">
-    <img id="imagen" src="" alt="" style="display:none;">
-    <div id="texto" class="texto"></div>
+<div id="contenedor">
+    <img id="imagen" src="" alt="">
+    <p id="texto"></p>
 </div>
 
 <script>
-    // Párrafos iniciales (8 segundos cada uno)
-    const parrafos = [
-        "Desde que te conocí, mi vida cambió para mejor...",
-        "Cada día me enseñas que el cariño verdadero está en los detalles...",
-        "Eres única, y me encanta recordártelo siempre...",
-        "Gracias por existir y por dejarme estar en tu vida..."
-    ];
-
-    // Cualidades con imágenes (6 segundos cada una)
     const cualidades = [
         {texto: "Eres mi inspiración diaria 💫", imagen: "img1.jpg"},
         {texto: "Tienes la sonrisa más hermosa 😍", imagen: "img2.jpg"},
@@ -58,52 +57,41 @@
         {texto: "Te admiro más cada día, mi Reina 🌟", imagen: "img10.jpg"}
     ];
 
-    const imagenFinal = "imgf.jpg"; // Cambia por tu imagen final
-    const fraseFinal = "Eres la persona que le da color a mis días.";
+    const imagenFinal = "imagenFinal.jpg";
+    const textoFinal = "Eres y siempre serás lo mejor que me ha pasado ❤️";
 
     let index = 0;
-    let fase = "parrafos";
+    const imagenEl = document.getElementById("imagen");
+    const textoEl = document.getElementById("texto");
 
-    const imagen = document.getElementById("imagen");
-    const texto = document.getElementById("texto");
-
-    function mostrarParrafos() {
-        if (index < parrafos.length) {
-            texto.textContent = parrafos[index];
-            imagen.style.display = "none";
-            index++;
-            setTimeout(mostrarParrafos, 4000); // 8 segundos
-        } else {
-            fase = "cualidades";
-            index = 0;
-            mostrarCualidades();
-        }
-    }
-
-    function mostrarCualidades() {
+    function mostrarCualidad() {
         if (index < cualidades.length) {
-            texto.textContent = cualidades[index].texto;
-            imagen.src = cualidades[index].imagen;
-            imagen.style.display = "block";
-            index++;
-            setTimeout(mostrarCualidades, 4000); // 6 segundos
+            const {texto, imagen} = cualidades[index];
+            imagenEl.src = imagen;
+            imagenEl.style.display = "block";
+            textoEl.textContent = texto;
+            textoEl.classList.add("mostrar");
+
+            setTimeout(() => {
+                textoEl.classList.remove("mostrar");
+                index++;
+                setTimeout(mostrarCualidad, 1000);
+            }, 6000);
         } else {
             mostrarFinal();
         }
     }
 
     function mostrarFinal() {
-        imagen.src = imagenFinal;
-        texto.textContent = fraseFinal;
-        imagen.style.display = "block";
+        imagenEl.src = imagenFinal;
+        imagenEl.style.display = "block";
+        textoEl.textContent = textoFinal;
+        textoEl.classList.add("mostrar");
     }
 
-    // Inicia la presentación
-    mostrarParrafos();
+    mostrarCualidad();
 </script>
 
 </body>
 </html>
-
-
 
